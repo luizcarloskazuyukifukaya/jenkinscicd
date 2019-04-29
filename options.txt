@@ -1,0 +1,1 @@
+--argumentsRealm.passwd.jenkins=P@ssw0rd --argumentsRealm.roles.jenkins=admin
