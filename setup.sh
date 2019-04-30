@@ -16,12 +16,13 @@ gcloud auth login
 echo "Set default projet:$PROJECT_ID and zone:$ZONE."
 
 gcloud config set project  $PROJECT_ID
+gcloud config set compute/region $REGION
 gcloud config set compute/zone $ZONE
 
 #Create Virtual Private Cloud for Jenkins cluster
 gcloud compute networks create $JENKINS_VPC --subnet-mode auto
 #gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp,udp,icmp --source-ranges 0.0.0.0/0
-gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp:22,tcp:80,tcp:8080,tcp:443,icmp
+gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp:22,tcp:80,tcp:8080,tcp:50000,tcp:443,icmp
 
 echo "K8S Cluster:$JENKINS_CLUSTER"
 gcloud container clusters create $JENKINS_CLUSTER \
@@ -107,4 +108,3 @@ kubectl describe ingress jenkins --namespace jenkinsgcp
 
 # Completion message here
 echo "completed!!"
-
