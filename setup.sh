@@ -110,6 +110,10 @@ echo "Checking the status ..."
 kubectl get ingress --namespace jenkinsgcp
 #kubectl describe ingress jenkins --namespace jenkinsgcp
 echo "(NOTE) To access the Jenkins server portal, open the browser and put the ADDRESS (ip address of the server)."
+echo "(NOTE) Jenkins server administrator credential is as the following:"
+echo "username: jenkins"
+echo "password: <information on the option file>"
+more options
 
 # Completion message here
 echo "completed!!"
