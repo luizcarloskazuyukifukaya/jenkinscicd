@@ -76,7 +76,7 @@ echo "Creating disk volume based on the disk image just created..."
 gcloud beta compute disks create jenkins-home \
 --project=$PROJECT_ID \
 --type=pd-standard \
---size=500GB \
+--size=50GB \
 --zone=$ZONE \
 --image=jenkins-home-image \
 --image-project=$PROJECT_ID \
@@ -108,7 +108,8 @@ kubectl apply -f ingress/
 # Check ingress
 echo "Checking the status ..."
 kubectl get ingress --namespace jenkinsgcp
-kubectl describe ingress jenkins --namespace jenkinsgcp
+#kubectl describe ingress jenkins --namespace jenkinsgcp
+echo "(NOTE) To access the Jenkins server portal, open the browser and put the ADDRESS (ip address of the server)."
 
 # Completion message here
 echo "completed!!"
