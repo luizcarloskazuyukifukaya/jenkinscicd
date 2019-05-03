@@ -74,24 +74,26 @@ gcloud compute images create jenkins-home-image \
 # Create disk from image (jenkins-home-image)
 echo "Creating disk volume based on the disk image just created..."
 gcloud beta compute disks create jenkins-home \
- --project=$PROJECT_ID \
- --type=pd-ssd \
- --zone=$ZONE \
- --image=jenkins-home-image \
- --image-project=$PROJECT_ID \
- --physical-block-size=4096
-
-#gcloud beta compute disks create jenkins-home --project=luiz-carlos-gcp --type=pd-standard --size=10GB --zone=asia-northeast1-a --image=jenkins-home-image --image-project=luiz-carlos-gcp --physical-block-size=4096
-gcloud beta compute disks create jenkins-home --project=$PROJECT_ID --type=pd-standard --size=500GB --zone=$ZONE --image=jenkins-home-image --image-project=$PROJECT_ID --physical-block-size=4096
+--project=$PROJECT_ID \
+--type=pd-standard \
+--size=500GB \
+--zone=$ZONE \
+--image=jenkins-home-image \
+--image-project=$PROJECT_ID \
+--physical-block-size=4096
+echo "disk volume created."
 
 # Deploy Kubernets deployment and the service
+echo "Start Kubernets deployment and services ..."
 kubectl apply -f k8s/
 
 # Check pods and services
+echo "Checking the status ..."
 kubectl get pods --namespace jenkinsgcp
 kubectl get services --namespace jenkinsgcp
 
 # TLS Certificate (self-signed)
+echo "Generating Certificate..."
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=jenkins/O=jenkins"
 echo "OpenSSL Certificate generated."
 cat tls.key
@@ -100,9 +102,11 @@ cat tls.crt
 kubectl create secret generic tls --from-file=tls.crt --from-file=tls.key --namespace jenkinsgcp
 
 # Exposing the service
+echo "Exposing the service..."
 kubectl apply -f ingress/
 
 # Check ingress
+echo "Checking the status ..."
 kubectl get ingress --namespace jenkinsgcp
 kubectl describe ingress jenkins --namespace jenkinsgcp
 
