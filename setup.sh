@@ -76,7 +76,7 @@ echo "Creating disk volume based on the disk image just created..."
 gcloud beta compute disks create jenkins-home \
 --project=$PROJECT_ID \
 --type=pd-standard \
---size=50GB \
+--size=500GB \
 --zone=$ZONE \
 --image=jenkins-home-image \
 --image-project=$PROJECT_ID \
