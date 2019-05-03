@@ -31,7 +31,7 @@ gcloud compute images delete jenkins-home-image
 
 # Delete disk volume
 gcloud beta compute disks delete jenkins-home
-gcloud compute disks delete jenkins-home
+#gcloud compute disks delete jenkins-home
 
 echo "Completed!!!"
 
