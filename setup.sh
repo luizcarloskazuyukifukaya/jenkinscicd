@@ -22,7 +22,7 @@ gcloud config set compute/zone $ZONE
 #Create Virtual Private Cloud for Jenkins cluster
 gcloud compute networks create $JENKINS_VPC --subnet-mode auto
 #gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp,udp,icmp --source-ranges 0.0.0.0/0
-gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp:22,tcp:80,tcp:8080,tcp:50000,tcp:443,icmp
+#gcloud compute firewall-rules create $JENKINS_FW --network $JENKINS_VPC --allow tcp:22,tcp:80,tcp:8080,tcp:50000,tcp:443,icmp
 
 echo "K8S Cluster:$JENKINS_CLUSTER"
 gcloud container clusters create $JENKINS_CLUSTER \
@@ -113,7 +113,10 @@ echo "(NOTE) To access the Jenkins server portal, open the browser and put the A
 echo "(NOTE) Jenkins server administrator credential is as the following:"
 echo "username: jenkins"
 echo "password: <information on the option file>"
-more options
+cat options
+
+echo "You may need to wait a while and check the completion of the ingression creation."
+echo "You can check by executing <kubectl get ingress --namespace jenkinsgcp>."
 
 # Completion message here
 echo "completed!!"

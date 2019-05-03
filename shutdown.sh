@@ -18,13 +18,13 @@ gcloud config set compute/zone $ZONE
 # Delete the cluster
 gcloud container clusters delete $JENKINS_CLUSTER
 
-# Delete network
-# NOTE: Deleting VPC will trigger deletion of firewall rules as well.
-gcloud compute networks delete $JENKINS_VPC
-
 # Delete firewall rules
-gcloud compute firewall-rules list --filter=jenkins
-gcloud compute firewall-rules delete $JENKINS_FW
+#gcloud compute firewall-rules list --filter=jenkins
+#gcloud compute firewall-rules delete $JENKINS_FW
+
+# Delete network
+# NOTE: Firewall rules must be delete first, before deleting the VPC.
+gcloud compute networks delete $JENKINS_VPC
 
 # Delete image
 gcloud compute images delete jenkins-home-image
