@@ -11,6 +11,8 @@ Then, execute the shell script!
 ## Prerequisites
 1) Google Cloud SDK installed
 2) Internet Connection
+3) Google Cloud Platform subscription and a Project created
+4) Git installed (or any git client) [optional]
 
 Enjoy!!
 Luiz Carlos Kazuyuki Fukaya
