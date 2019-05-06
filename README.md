@@ -10,9 +10,10 @@ Then, execute the shell script!
 
 ## Prerequisites
 1) Google Cloud SDK installed
-2) Internet Connection
+2) Kurbenetes kubectl command installed
 3) Google Cloud Platform subscription and a Project created
-4) Git installed (or any git client) [optional]
+4) Internet Connection
+5) Git installed (or any git client) [optional]
 
-Enjoy!!
+Enjoy!! 
 Luiz Carlos Kazuyuki Fukaya
