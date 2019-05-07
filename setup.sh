@@ -55,7 +55,9 @@ echo "Generated password for kubernets:$PASSWD"
 
 echo "--argumentsRealm.passwd.jenkins=$PASSWD --argumentsRealm.roles.jenkins=admin" > options
 echo "option file generated with the password..."
-cat ./options
+echo "Jenkins login credential:"
+echo "    username:jenkins"
+echo "    password:$PASSWD"
 
 kubectl create secret generic jenkins --from-file=options --namespace=jenkinsgcp
 echo "secret in Kubernets created."
@@ -112,7 +114,7 @@ kubectl get ingress --namespace jenkinsgcp
 echo "(NOTE) To access the Jenkins server portal, open the browser and put the ADDRESS (ip address of the server)."
 echo "(NOTE) Jenkins server administrator credential is as the following:"
 echo "username: jenkins"
-echo "password: <information on the option file>"
+echo "password: $PASSWD (You can find the information on the option file as well...)"
 cat options
 
 echo "You may need to wait a while and check the completion of the ingression creation."
