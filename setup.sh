@@ -113,8 +113,8 @@ kubectl get ingress --namespace jenkinsgcp
 #kubectl describe ingress jenkins --namespace jenkinsgcp
 echo "(NOTE) To access the Jenkins server portal, open the browser and put the ADDRESS (ip address of the server)."
 echo "(NOTE) Jenkins server administrator credential is as the following:"
-echo "username: jenkins"
-echo "password: $PASSWD (You can find the information on the option file as well...)"
+echo -e "\e[31musername: jenkins\e[0m"
+echo -e "\e[31mpassword: $PASSWD\e[0m (You can find the information on the option file as well...)"
 cat options
 
 echo "You may need to wait a while and check the completion of the ingression creation."
